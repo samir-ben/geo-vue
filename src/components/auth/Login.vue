@@ -31,6 +31,17 @@ export default {
   },
   methods: {
     login(){
+      if(this.email && this.password){
+        this.feedback = null
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        .then(cred => {
+          this.$router.push({ name: 'GMap' })
+        }).catch(err => {
+          this.feedback = err.message
+        })
+      } else {
+        this.feedback = 'Please fill in both fields'
+      }
     }
   }
 }
