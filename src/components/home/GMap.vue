@@ -27,6 +27,9 @@ export default {
     }
   },
   mounted(){
+    // get current user
+    let user = firebase.auth().currentUser
+    console.log(user);
     this.renderMap()
   }
 }
