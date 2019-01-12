@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import GMap from '@/components/GMap'
+import GMap from '@/components/home/GMap'
 
 Vue.use(Router)
 
