@@ -29,8 +29,21 @@ export default {
   mounted(){
     // get current user
     let user = firebase.auth().currentUser
-    console.log(user);
-    this.renderMap()
+    //get current location
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(pos => {
+        this.lat = pos.coords.latitude
+        this.lng = pos.coords.longitude
+        this.renderMap()
+        // find the user record and then update geocoords
+      }, (err) => {
+        // timeout, centre by default values
+        this.renderMap()
+      }, { maximumAge: 60000, timeout: 3000 }) // cached location
+    } else {
+      // position centre by default values
+      this.renderMap()
+    }   
   }
 }
 </script>
