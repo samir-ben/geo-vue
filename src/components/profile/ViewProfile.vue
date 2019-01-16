@@ -51,7 +51,7 @@ export default {
     // comments
     db.collection('comments').where('to', '==', this.$route.params.id).orderBy('time')
     .onSnapshot((snapshot) => {
-      snapshot.docChanges.forEach(change => {
+      snapshot.docChanges().forEach(change => {
         if(change.type == 'added'){
           this.comments.unshift({
             from: change.doc.data().from,
